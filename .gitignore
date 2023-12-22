@@ -1,0 +1,23 @@
+cache/
+node_modules/
+start.bat
+resources/Sea-NetProtect/
+resources/Sea-Anticheat/
+server.cfg
+.idea/
+resources/ZGEGUI/
+resources/ZGEGUI.zip
+*.zip
+*.log
+resources/nextgen/data/db.json
+resources/Sea-NetProtect/export/0_export/console.lua
+resources/Sea-NetProtect/shared/0_utils/console.lua
+resources/nextgen/_dist/client.lua
+resources/nextgen/_dist/server.lua
+**/cfx-gabz*/
+**/Test1/
+**/Test2/
+.replxx_history
+/resources/[vehicles]
+/resources/[dependencies]/sClothesV9/**
+/resources/nextgen-data/data/db - Copie.json
