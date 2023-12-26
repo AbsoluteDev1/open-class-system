@@ -17,8 +17,6 @@ files{
 
 }
 shared_scripts {
-    "project.lua",
-    "interface.lua",
     "core/**",
     "shared/classes/**",
 }

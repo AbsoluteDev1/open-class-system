@@ -29,3 +29,34 @@ function table.filter(table, predicate)
 	end
 	return result
 end
+
+function table.map(table, predicate)
+	local result = {}
+	for i = 1, #table do
+		table.insert(result, predicate(table[i]))
+	end
+	return result
+end
+
+function table.reduce(table, predicate, initialValue)
+	local result = initialValue
+	for i = 1, #table do
+		result = predicate(result, table[i])
+	end
+	return result
+end
+
+function table.forEach(table, predicate)
+	for i = 1, #table do
+		predicate(table[i])
+	end
+end
+
+function table.contains(table, value)
+	for i = 1, #table do
+		if table[i] == value then
+			return true
+		end
+	end
+	return false
+end

@@ -1,23 +1,22 @@
+_cn = {}
+
 ---@class BaseObject
+---@field __isLoaded__ boolean
+---@field __class__ string
+---@field __annotations__ table<string, Annotation>
+---@field __parent__ BaseObject
+---@field _data table<string, any>
+---@field changed Signal
 BaseObject = {}
 
-function BaseObject.new()
+_cn.BaseObject = "BaseObject"
 
-	local self = setmetatable({}, {
-		__index = BaseObject});
+function BaseObject.new()
+	local self = setmetatable({}, { __index = BaseObject});
 	self.__isLoaded__ = false;
 	self.__class__ = "BaseObject";
 	self.__annotations__ = {};
-	self._data = {};
 	return self
-end
-
-function BaseObject:get(key)
-	return self._data[key]
-end
-
-function BaseObject:set(key, value)
-	self._data[key] = value
 end
 
 function BaseObject:toString()
@@ -38,4 +37,16 @@ function BaseObject:deserialize(data)
 	for k,v in pairs(data) do
 		self[k] = v
 	end
+end
+
+function BaseObject:instanceOf(clazz)
+	return instanceof(self,clazz);
+end
+
+function BaseObject:getClass()
+	return getClassByName(self.__class__);
+end
+
+function BaseObject:getClassObject()
+	return self:getClass();
 end
