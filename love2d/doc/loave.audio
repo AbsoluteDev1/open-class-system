@@ -1,0 +1,46 @@
+Provides of audio interface for playback/recording sound.
+
+ Types
+ RecordingDevice	Represents an audio input device capable of recording sounds.	Added since 11.0
+ Source	A Source represents audio you can play back.
+ Functions
+ love.audio.getActiveEffects	Gets a list of the names of the currently enabled effects.	Added since 11.0
+ love.audio.getActiveSourceCount	Gets the current number of simultaneously playing sources.	Added since 11.0
+ love.audio.getDistanceModel	Returns the distance attenuation model.	Added since 0.8.0
+ love.audio.getDopplerScale	Gets the global scale factor for doppler effects.	Added since 0.9.2
+ love.audio.getEffect	Gets the settings associated with an effect.	Added since 11.0
+ love.audio.getMaxSceneEffects	Gets the maximum number of active effects.	Added since 11.0
+ love.audio.getMaxSourceEffects	Gets the maximum number of active Effects for each Source.	Added since 11.0
+ love.audio.getNumSources	Gets the current number of simultaneously playing sources.		Removed in 0.9.0
+ love.audio.getOrientation	Returns the orientation of the listener.
+ love.audio.getPosition	Returns the position of the listener.
+ love.audio.getRecordingDevices	Gets a list of RecordingDevices on the system.	Added since 11.0
+ love.audio.getSourceCount	Gets the current number of simultaneously playing sources.	Added since 0.9.0	Deprecated in 11.0
+ love.audio.getVelocity	Returns the velocity of the listener.
+ love.audio.getVolume	Returns the master volume.
+ love.audio.isEffectsSupported	Gets whether Effects are supported in the system.	Added since 11.0
+ love.audio.newQueueableSource	Creates a new Source usable for real-time generated sound playback with Source:queue.	Added since 11.0
+ love.audio.newSource	Creates a new Source from a file, SoundData, or Decoder.
+ love.audio.pause	Pauses specific or all currently played Sources.
+ love.audio.play	Plays the specified Source.
+ love.audio.resume	Resumes all audio.		Removed in 11.0
+ love.audio.rewind	Rewinds all playing audio.		Removed in 11.0
+ love.audio.setDistanceModel	Sets the distance attenuation model.	Added since 0.8.0
+ love.audio.setDopplerScale	Sets a global scale factor for doppler effects.	Added since 0.9.2
+ love.audio.setEffect	Defines an effect that can be applied to a Source.	Added since 11.0
+ love.audio.setMixWithSystem	Sets whether the system should mix the audio with the system's audio.	Added since 11.0
+ love.audio.setOrientation	Sets the orientation of the listener.
+ love.audio.setPosition	Sets the position of the listener.
+ love.audio.setVelocity	Sets the velocity of the listener.
+ love.audio.setVolume	Sets the master volume.
+ love.audio.stop	Stops currently played sources.
+ Enums
+ DistanceModel	The different distance models.	Added since 0.8.0
+ EffectType	Different types of audio effects.	Added since 11.0
+ EffectWaveform	Types of waveforms for ringmodulator effect.	Added since 11.0
+ SourceType	Types of audio sources.
+ TimeUnit	Units that represent time.	Added since 0.8.0
+ See Also
+ love
+ Tutorial:Audio
+ Audio Formats

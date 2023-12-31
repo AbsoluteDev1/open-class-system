@@ -1,0 +1,22 @@
+Provides functionality for creating and transforming data.
+
+Types
+ByteData	Data object containing arbitrary bytes in an contiguous memory.	Added since 11.0
+CompressedData	Byte data compressed using a specific algorithm.	Added since 0.10.0
+Data	The superclass of all data.
+Functions
+love.data.compress	Compresses a string or data using a specific compression algorithm.	Added since 11.0
+love.data.decode	Decode Data or a string from any of the EncodeFormats to Data or string.	Added since 11.0
+love.data.decompress	Decompresses a CompressedData or previously compressed string or Data object.	Added since 11.0
+love.data.encode	Encode Data or a string to a Data or string in one of the EncodeFormats.	Added since 11.0
+love.data.getPackedSize	Gets the size in bytes that a given format used with love.data.pack will use.	Added since 11.0
+love.data.hash	Compute message digest using specific hash algorithm.	Added since 11.0
+love.data.newByteData	Creates a new Data object containing arbitrary bytes.	Added since 11.0
+love.data.newDataView	Creates a new Data referencing a subsection of an existing Data object.	Added since 11.0
+love.data.pack	Packs (serializes) simple Lua values.	Added since 11.0
+love.data.unpack	Unpacks (deserializes) a byte-string or Data into simple Lua values.	Added since 11.0
+Enums
+CompressedDataFormat	Compressed data formats.	Added since 0.10.0
+ContainerType	Return type of data-returning functions.	Added since 11.0
+EncodeFormat	Encoding format used to encode or decode data.	Added since 11.0
+HashFunction	Hash algorithm of hash function.	Added since 11.0

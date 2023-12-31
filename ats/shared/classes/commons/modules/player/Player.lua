@@ -36,5 +36,9 @@ function Player:getPosition()
 
 end
 
+function Player:setPosition()
+    
+end
+
 _c.Player = Player;
 classloaded(_cn.Player)

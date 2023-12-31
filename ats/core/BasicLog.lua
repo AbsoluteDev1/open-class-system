@@ -20,40 +20,50 @@ BasicLog.LogLevelNames = {
 	[BasicLog.LogLevel.FATAL] = "FATAL"
 }
 
-BasicLog.CurrentLogLevel = BasicLog.LogLevel.INFO;
+BasicLog.CurrentLogLevel = BasicLog.LogLevel.DEBUG;
 
-function BasicLog.trace(message)
+function BasicLog.trace(message,...)
 	if BasicLog.CurrentLogLevel > BasicLog.LogLevel.TRACE then
 		return;
 	end
+	local args = {...}
+	message = string.format(message,unpack(args))
 	BasicLog.print(BasicLog.LogLevelNames[BasicLog.LogLevel.TRACE],message)
 end
 
-function BasicLog.info(message)
+function BasicLog.info(message,...)
 	if BasicLog.CurrentLogLevel > BasicLog.LogLevel.INFO then
 		return;
 	end
+	local args = {...}
+	message = string.format(message,unpack(args))
 	BasicLog.print(BasicLog.LogLevelNames[BasicLog.LogLevel.INFO],message)
 end
 
-function BasicLog.debug(message)
+function BasicLog.debug(message,...)
 	if BasicLog.CurrentLogLevel > BasicLog.LogLevel.DEBUG then
 		return;
 	end
+	local args = {...}
+	message = string.format(message,unpack(args))
 	BasicLog.print(BasicLog.LogLevelNames[BasicLog.LogLevel.DEBUG],message)
 end
 
-function BasicLog.warn(message)
+function BasicLog.warn(message,...)
 	if BasicLog.CurrentLogLevel > BasicLog.LogLevel.WARN then
 		return;
 	end
+	local args = {...}
+	message = string.format(message,unpack(args))
 	BasicLog.print(BasicLog.LogLevelNames[BasicLog.LogLevel.WARN],message)
 end
 
-function BasicLog.error(message)
+function BasicLog.error(message,...)
 	if BasicLog.CurrentLogLevel > BasicLog.LogLevel.ERROR then
 		return;
 	end
+	local args = {...}
+	message = string.format(message,unpack(args))
 	BasicLog.print(BasicLog.LogLevelNames[BasicLog.LogLevel.ERROR],message)
 end
 

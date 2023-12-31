@@ -32,8 +32,8 @@ function import(name,timeoutTimer)
 	else
 		local promize = Interface.promise.new();
 		Interface.thread(function()
-			local timeout = timeoutTimer or 10000;
-			local timer = GetGameTimer();
+			local timeout = timeoutTimer or 10;
+			local timer = Interface.getGameTimer();
 			repeat
 				Interface.wait(0)
 			until (classes[name] and classesLoaded[name]) or Interface.getGameTimer() - timer > timeout
@@ -43,7 +43,7 @@ function import(name,timeoutTimer)
 				promize:reject("Classloader.loadClass / Can't get Class '"..name.."' cause it's not loaded")
 			end
 		end)
-		return await(promize)
+		return Interface.await(promize)
 	end
 end
 
@@ -244,11 +244,12 @@ function getClassByName(name)
 	return classes[name];
 end
 
-function loadClass(className)
+function loadClass(className,module)
 	classesLoaded[className] = false;
 	BasicLog.debug("^3Loading class '"..className.."'^7")
 	local p = Interface.promise.new();
 	Interface.thread(function()
+		Interface.wait(1)
 		p:resolve();
 	end)
 	return Interface.await(p)
@@ -277,13 +278,17 @@ function classloaded(className)
 	end)
 end
 
+function replaceClass(cName,clazz)
+	classes[cName] = clazz;
+end
+
 classes["BaseObject"] = BaseObject;
 
 BasicLog.info("^4Preloading classes...")
 Interface.thread(function()
 	BasicLog.info("^2Preloading ended")
 	BasicLog.info("^4Start meta programming...")
-	Interface.setTimeout(10000,function()
+	Interface.setTimeout(2,function()
 		stopAllTryingInstantiation = true;
 		if not allClassesLoaded() then
 			BasicLog.error("Some classes are not loaded, please check your code")

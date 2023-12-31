@@ -30,6 +30,8 @@ local PlayerModule = extends("PlayerModule", "Module");
 _a.ApplicationScope(PlayerModule)
 _a.AModule(PlayerModule)
 --- Attributs ---
+
+_a.MaxLength(PlayerModule,"name",{max = 10})
 PlayerModule.name = "PlayerModule"
 PlayerModule.players = nil;
 --- Methods ---
@@ -56,6 +58,7 @@ function PlayerModule:test(test)
 	return test;
 end
 
+_a.NetEvent(PlayerModule,"onPlayerConnecting")
 ---@param sessionId number
 function PlayerModule:onPlayerConnecting(sessionId)
 	local player = Player.new(sessionId);

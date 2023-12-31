@@ -15,5 +15,9 @@ Project = {
     isDev = function()
         return Project.environment == "dev"
     end,
-}
+    paths = {
 
+    },
+    defaultPed = "a_m_y_skater_01",
+    timeScale = 1.0, -- for seconds => 1000 for ms
+}

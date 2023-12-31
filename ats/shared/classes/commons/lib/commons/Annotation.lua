@@ -31,5 +31,9 @@ function Annotation:onValueChange(object,attr)
 	error("Not implemented")
 end
 
+function Annotation:onInstantiate(object,attr)
+
+end
+
 _c.Annotation = Annotation
 classloaded("Annotation")

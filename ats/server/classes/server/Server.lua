@@ -41,11 +41,10 @@ end
 function Server:waitForModules()
     local time = Interface.getGameTimer();
     repeat
-        Citizen.Wait(0);
+        Interface.wait(0);
     until self.moduleManager:allModulesLoaded();
     BasicLog.info("All modules loaded in " .. Interface.getGameTimer() - time .. " ms");
 end
-
 
 
 _c.Server = Server

@@ -29,9 +29,9 @@ function TestBench.new()
     self.nbTest = 0;
     self.waitForTest = true;
 
-    RegisterCommand("run_test",function()
-        self:run()
-    end)
+    --RegisterCommand("run_test",function()
+    --    self:run()
+    --end)
 
     return self;
 end

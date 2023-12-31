@@ -1,0 +1,71 @@
+Provides an interface to the user's filesystem.
+
+This module provides access to files in specific places:
+
+The root folder of the .love archive (or source directory)
+The root folder of the game's save directory.
+The folder containing the game's .love archive (or source directory), but only if specific conditions are met.
+Each game is granted a single directory on the system where files can be saved through love.filesystem. This is the only directory where love.filesystem can write files. These directories will typically be found in something like:
+
+OS	Path	Alternative	Notes
+Windows XP	C:\Documents and Settings\user\Application Data\LOVE\	%appdata%\LOVE\	When fused, save directory will be created directly inside Application Data, rather than as a sub-directory of LOVE.
+Windows Vista, 7, 8, 10 and 11	C:\Users\user\AppData\Roaming\LOVE	%appdata%\LOVE\	When fused, save directory will be created directly inside AppData, rather than as a sub-directory of LOVE.
+Mac	/Users/user/Library/Application Support/LOVE/	-	-
+Linux	$XDG_DATA_HOME/love/	~/.local/share/love/	-
+Android	/data/data/org.love2d.android/files/save/	/sdcard/Android/data/org.love2d.android/files/save/	The alternative path is used when activating t.externalstorage config option. Neither path is accessible through device directly due to Android restrictions.
+Files that are opened for write or append will always be created in the save directory. The same goes for other operations that involve writing to the filesystem, like createDirectory.
+
+Files that are opened for read will be looked for in the save directory, and then in the .love archive (in that order). So if a file with a certain filename (and path) exist in both the .love archive and the save folder, the one in the save directory takes precedence.
+
+Note: All paths are relative to the .love archive and save directory. (except for the get*Directory() calls)
+
+It is recommended to set your game's identity first in your conf.lua. You can set it with love.filesystem.setIdentity as well.
+
+Types
+DroppedFile	Represents a file dropped from the window.	Added since 0.10.0
+File	Represents a file on the filesystem.
+FileData	Data representing the contents of a file.
+Functions
+love.filesystem.append	Append data to an existing file.	Added since 0.9.0
+love.filesystem.areSymlinksEnabled	Gets whether love.filesystem follows symbolic links.	Added since 0.9.2
+love.filesystem.createDirectory	Creates a directory.	Added since 0.9.0
+love.filesystem.enumerate	Returns all the files and subdirectories in the directory.	Added since 0.3.0	Removed in 0.9.0
+love.filesystem.exists	Check whether a file or directory exists.		Deprecated in 11.0
+love.filesystem.getAppdataDirectory	Returns the application data directory (could be the same as getUserDirectory)
+love.filesystem.getCRequirePath	Gets the filesystem paths that will be searched for c libraries when require is called.	Added since 11.0
+love.filesystem.getDirectoryItems	Returns all the files and subdirectories in the directory.	Added since 0.9.0
+love.filesystem.getIdentity	Gets the write directory name for your game.	Added since 0.9.0
+love.filesystem.getInfo	Gets information about the specified file or directory.	Added since 11.0
+love.filesystem.getLastModified	Gets the last modification time of a file.	Added since 0.7.1	Deprecated in 11.0
+love.filesystem.getRealDirectory	Gets the absolute path of the directory containing a filepath.	Added since 0.9.2
+love.filesystem.getRequirePath	Gets the filesystem paths that will be searched when require is called.	Added since 0.10.0
+love.filesystem.getSaveDirectory	Gets the full path to the designated save directory.	Added since 0.5.0
+love.filesystem.getSize	Gets the size in bytes of a file.	Added since 0.9.0	Deprecated in 11.0
+love.filesystem.getSource	Returns the full path to the .love file or directory.	Added since 0.9.0
+love.filesystem.getSourceBaseDirectory	Returns the full path to the directory containing the .love file.	Added since 0.9.0
+love.filesystem.getUserDirectory	Returns the path of the user's directory
+love.filesystem.getWorkingDirectory	Gets the current working directory.	Added since 0.5.0
+love.filesystem.init	Initializes love.filesystem, will be called internally, so should not be used explicitly.
+love.filesystem.isDirectory	Check whether something is a directory.		Deprecated in 11.0
+love.filesystem.isFile	Check whether something is a file.		Deprecated in 11.0
+love.filesystem.isFused	Gets whether the game is in fused mode or not.	Added since 0.9.0
+love.filesystem.isSymlink	Gets whether a filepath is actually a symbolic link.	Added since 0.9.2	Deprecated in 11.0
+love.filesystem.lines	Iterate over the lines in a file.	Added since 0.5.0
+love.filesystem.load	Loads a Lua file (but does not run it).	Added since 0.5.0
+love.filesystem.mkdir	Creates a directory.		Removed in 0.9.0
+love.filesystem.mount	Mounts a zip file or folder in the game's save directory for reading.	Added since 0.9.0
+love.filesystem.newFile	Creates a new File object.
+love.filesystem.newFileData	Creates a new FileData object from a file on disk, or from a string in memory.	Added since 0.7.0
+love.filesystem.read	Read the contents of a file.
+love.filesystem.remove	Removes a file (or directory).
+love.filesystem.setCRequirePath	Sets the filesystem paths that will be searched for c libraries when require is called.	Added since 11.0
+love.filesystem.setIdentity	Sets the write directory for your game.
+love.filesystem.setRequirePath	Sets the filesystem paths that will be searched when require is called.	Added since 0.10.0
+love.filesystem.setSource	Sets the source of the game, where the code is present. Used internally.
+love.filesystem.setSymlinksEnabled	Sets whether love.filesystem follows symbolic links.	Added since 0.9.2
+love.filesystem.unmount	Unmounts a zip file or folder previously mounted with love.filesystem.mount.	Added since 0.9.0
+love.filesystem.write	Write data to a file.
+Enums
+FileDecoder	How to decode a given FileData.	Added since 0.7.0	Removed in 11.0
+FileMode	The different modes you can open a File in.
+FileType	The type of a file.	Added since 11.0

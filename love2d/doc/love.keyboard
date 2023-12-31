@@ -1,0 +1,20 @@
+Provides an interface to the user's keyboard.
+
+ Functions
+ love.keyboard.getKeyFromScancode	Gets the key corresponding to the given hardware scancode.	Added since 0.9.2
+ love.keyboard.getKeyRepeat	Returns the delay and interval of key repeating.		Removed in 0.9.0
+ love.keyboard.getScancodeFromKey	Gets the hardware scancode corresponding to the given key.	Added since 0.9.2
+ love.keyboard.hasKeyRepeat	Gets whether key repeat is enabled.	Added since 0.9.0
+ love.keyboard.hasScreenKeyboard	Gets whether screen keyboard is supported.	Added since 0.10.0
+ love.keyboard.hasTextInput	Gets whether text input events are enabled.	Added since 0.9.0
+ love.keyboard.isDown	Checks whether a certain key is down.
+ love.keyboard.isScancodeDown	Checks whether the specified Scancodes are pressed.	Added since 0.10.0
+ love.keyboard.setKeyRepeat	Enables or disables key repeat for love.keypressed.
+ love.keyboard.setTextInput	Enables or disables text input events.	Added since 0.9.0
+ Enums
+ KeyConstant	All the keys you can press.
+ Scancode	Keyboard scancodes.	Added since 0.9.2
+ See Also
+ love
+ love.keypressed
+ love.keyreleased

@@ -32,6 +32,7 @@ function InventoryModule.new()
     ---@type InventoryModule
     local self = initMetatable(InventoryModule);
 
+
     return self;
 end
 
