@@ -15,6 +15,7 @@ local RemoteEvent = extends("RemoteEvent","Instance");
 
 function RemoteEvent.new(name)
 	local self = initMetatable(RemoteEvent);
+	self.name = name;
 	self.onClient = Signal.new();
 	self.onServer = Signal.new()
 	--- FIVEM LINK CODE
