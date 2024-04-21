@@ -32,7 +32,7 @@ function import(name,timeoutTimer)
 	else
 		local promize = Interface.promise.new();
 		Interface.thread(function()
-			local timeout = timeoutTimer or 10;
+			local timeout = timeoutTimer or 1000;
 			local timer = Interface.getGameTimer();
 			repeat
 				Interface.wait(0)
@@ -288,7 +288,7 @@ BasicLog.info("^4Preloading classes...")
 Interface.thread(function()
 	BasicLog.info("^2Preloading ended")
 	BasicLog.info("^4Start meta programming...")
-	Interface.setTimeout(2,function()
+	Interface.setTimeout(2000,function()
 		stopAllTryingInstantiation = true;
 		if not allClassesLoaded() then
 			BasicLog.error("Some classes are not loaded, please check your code")

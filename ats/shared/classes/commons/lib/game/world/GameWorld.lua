@@ -4,10 +4,8 @@
 --Made with ❤
 -------
 -------
---Copyright (c) Qinoxe, All Rights Reserved.
---This file is part of Qinoxe project.
---Unauthorized using, copying, modifying and/or distributing of this file
---via any medium is strictly prohibited. This code is confidential.
+
+
 -------
 --]]
 
@@ -17,10 +15,13 @@ loadClass(_cn.GameWorld)
 --- Imports ---
 
 import(_cn.ApplicationScope)
-import(_cn.ObservableList)
+local ObservableList = import(_cn.ObservableList)
+
+
 
 ---@class GameWorld : BaseObject
 local GameWorld = class(_cn.GameWorld)
+
 _a.ApplicationScope(GameWorld)
 --- Attributs ---
 

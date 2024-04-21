@@ -1,4 +1,3 @@
- --shared_scripts { '@Sea-NetProtect/dist/export.lua' } dependency 'Sea-NetProtect' -- NetProtect IMPORTANT ! DONT TOUCH THIS LINE
 
 Dev = "dev";
 
@@ -17,6 +16,7 @@ files{
 
 }
 shared_scripts {
+    "ats-core.lua",
     "project.lua",
     "interface.lua",
     "core/**",

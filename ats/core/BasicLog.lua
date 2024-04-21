@@ -27,7 +27,7 @@ function BasicLog.trace(message,...)
 		return;
 	end
 	local args = {...}
-	message = string.format(message,unpack(args))
+	message = string.format(message,table.unpack(args))
 	BasicLog.print(BasicLog.LogLevelNames[BasicLog.LogLevel.TRACE],message)
 end
 
@@ -36,7 +36,7 @@ function BasicLog.info(message,...)
 		return;
 	end
 	local args = {...}
-	message = string.format(message,unpack(args))
+	message = string.format(message,table.unpack(args))
 	BasicLog.print(BasicLog.LogLevelNames[BasicLog.LogLevel.INFO],message)
 end
 
@@ -45,7 +45,7 @@ function BasicLog.debug(message,...)
 		return;
 	end
 	local args = {...}
-	message = string.format(message,unpack(args))
+	message = string.format(message,table.unpack(args))
 	BasicLog.print(BasicLog.LogLevelNames[BasicLog.LogLevel.DEBUG],message)
 end
 
@@ -54,7 +54,7 @@ function BasicLog.warn(message,...)
 		return;
 	end
 	local args = {...}
-	message = string.format(message,unpack(args))
+	message = string.format(message,table.unpack(args))
 	BasicLog.print(BasicLog.LogLevelNames[BasicLog.LogLevel.WARN],message)
 end
 
@@ -63,7 +63,7 @@ function BasicLog.error(message,...)
 		return;
 	end
 	local args = {...}
-	message = string.format(message,unpack(args))
+	message = string.format(message,table.unpack(args))
 	BasicLog.print(BasicLog.LogLevelNames[BasicLog.LogLevel.ERROR],message)
 end
 

@@ -1,28 +1,38 @@
+Debug = {
+    network = false,
+}
 Interface = {
-    coroutineManager = Ats.coroutineManager,
+    coroutineManager = {},
     thread = function(func)
-        Ats.coroutineManager:add(func)
+        Citizen.CreateThread(func)
     end,
     wait = function(seconds)
-        Ats.coroutineManager:wait(seconds)
+        Citizen.Wait(seconds)
     end,
     await = function(promise)
-        return Ats.coroutineManager:await(promise)
+        return Citizen.Await(promise)
     end,
     netEvent = function(name,cb)
-
+        BasicLog.debug("-- Registering net event: ^2"..name)
+        RegisterNetEvent(name,function(...)
+            if(Debug.network) then
+                BasicLog.debug("Received net event: ^2"..name)
+            end
+            local src = source or 0
+            cb(src,...)
+        end)
     end,
     emitClient = TriggerClientEvent,
     emitServer = TriggerServerEvent,
-    promise = Ats.Promise,
-    getGameTimer = os.time,
+    promise = promise,
+    getGameTimer = GetGameTimer,
     setTimeout = function(delay,fn)
         Interface.thread(function()
             Interface.wait(delay)
             fn()
         end)
     end,
-    startTime = os.time(),
+    startTime = GetGameTimer(),
     Vector3 = vector3,
     Vector2 = vector2,
     Vector4 = vector4,

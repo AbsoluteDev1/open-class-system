@@ -4,10 +4,8 @@
 --Made with ❤
 -------
 -------
---Copyright (c) Qinoxe, All Rights Reserved.
---This file is part of Qinoxe project.
---Unauthorized using, copying, modifying and/or distributing of this file
---via any medium is strictly prohibited. This code is confidential.
+
+
 -------
 --]]
 

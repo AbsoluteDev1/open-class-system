@@ -48,11 +48,11 @@
 --    p.PlayerModule:test(nil);
 --end)
 
-import(_cn.GameObject)
-import(_cn.L2DView)
-
-
-local gameObject = GameObject.new()
-gameObject.position = Vector3.new(0,0,0)
-gameObject:setViewNode(_cn.L2DView.new())
+--import(_cn.GameObject)
+--import(_cn.L2DView)
+--
+--
+--local gameObject = GameObject.new()
+--gameObject.position = Vector3.new(0,0,0)
+--gameObject:setViewNode(_cn.L2DView.new())
 

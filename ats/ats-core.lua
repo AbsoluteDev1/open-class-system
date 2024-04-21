@@ -6,126 +6,126 @@
 
 Ats = {}
 
-local Promise = {}
-Promise.__index = Promise
-
-function Promise.new()
-	local self = setmetatable({}, Promise)
-	self.status = "pending"
-	self.value = nil
-	self.reason = nil
-	self.fulfilledCallbacks = {}
-	self.rejectedCallbacks = {}
-	return self
-end
-
-function Promise:resolve(value)
-	if self.status == "pending" then
-		self.status = "fulfilled"
-		self.value = value
-		for _, callback in ipairs(self.fulfilledCallbacks) do
-			callback(value)
-		end
-	end
-end
-
-function Promise:reject(reason)
-	if self.status == "pending" then
-		self.status = "rejected"
-		self.reason = reason
-		for _, callback in ipairs(self.rejectedCallbacks) do
-			callback(reason)
-		end
-	end
-end
-
-function Promise:then_(onFulfilled, onRejected)
-	if self.status == "fulfilled" and onFulfilled then
-		onFulfilled(self.value)
-	elseif self.status == "rejected" and onRejected then
-		onRejected(self.reason)
-	else
-		table.insert(self.fulfilledCallbacks, onFulfilled or function() end)
-		table.insert(self.rejectedCallbacks, onRejected or function() end)
-	end
-	return self
-end
-
-function Promise:catch_(onRejected)
-	return self:then_(nil, onRejected)
-end
-
-Ats.Promise = Promise
-
-local CoroutineManager = {}
-CoroutineManager.__index = CoroutineManager
-
-function CoroutineManager.new()
-	return setmetatable({
-		coroutines = {},
-		waitTimers = {}
-	}, CoroutineManager)
-end
-
-function CoroutineManager:add(func)
-	local co = coroutine.create(func)
-	table.insert(self.coroutines, co)
-	self.waitTimers[co] = 0  -- Initialisation du timer d'attente
-	return co
-end
-
-function CoroutineManager:wait(seconds)
-	local co = coroutine.running()
-	self.waitTimers[co] = os.clock() + seconds
-	coroutine.yield()
-end
-
-function CoroutineManager:await(promise)
-	local isResolved = false
-	local resolvedValue, rejectedReason
-	promise:then_(function(value)
-		resolvedValue = value
-		isResolved = true
-	end, function(reason)
-		rejectedReason = reason
-		isResolved = true
-	end)
-
-	if not isResolved then
-		while not isResolved do
-			self:wait(0)
-		end
-	end
-	if rejectedReason then
-		print("Erreur Coroutine:", rejectedReason)
-		error(rejectedReason)
-	end
-
-	return resolvedValue
-end
-
-function CoroutineManager:run()
-	local index = 1
-	while #self.coroutines > 0 do
-		local co = self.coroutines[index]
-		if self.waitTimers[co] and self.waitTimers[co] <= os.clock() then
-			local success, msg = coroutine.resume(co)
-			if not success then
-				print("Status Coroutine ==> :", coroutine.status(co))
-				print("Erreur Coroutine ==> :", msg)
-			end
-			if coroutine.status(co) == "dead" then
-				table.remove(self.coroutines, index)
-				self.waitTimers[co] = nil
-			else
-				index = index % #self.coroutines + 1
-			end
-		else
-			index = index % #self.coroutines + 1
-		end
-	end
-end
-
-local coroutineManager = CoroutineManager.new()
+--local Promise = {}
+--Promise.__index = Promise
+--
+--function Promise.new()
+--	local self = setmetatable({}, Promise)
+--	self.status = "pending"
+--	self.value = nil
+--	self.reason = nil
+--	self.fulfilledCallbacks = {}
+--	self.rejectedCallbacks = {}
+--	return self
+--end
+--
+--function Promise:resolve(value)
+--	if self.status == "pending" then
+--		self.status = "fulfilled"
+--		self.value = value
+--		for _, callback in ipairs(self.fulfilledCallbacks) do
+--			callback(value)
+--		end
+--	end
+--end
+--
+--function Promise:reject(reason)
+--	if self.status == "pending" then
+--		self.status = "rejected"
+--		self.reason = reason
+--		for _, callback in ipairs(self.rejectedCallbacks) do
+--			callback(reason)
+--		end
+--	end
+--end
+--
+--function Promise:then_(onFulfilled, onRejected)
+--	if self.status == "fulfilled" and onFulfilled then
+--		onFulfilled(self.value)
+--	elseif self.status == "rejected" and onRejected then
+--		onRejected(self.reason)
+--	else
+--		table.insert(self.fulfilledCallbacks, onFulfilled or function() end)
+--		table.insert(self.rejectedCallbacks, onRejected or function() end)
+--	end
+--	return self
+--end
+--
+--function Promise:catch_(onRejected)
+--	return self:then_(nil, onRejected)
+--end
+--
+--Ats.Promise = Promise
+--
+--local CoroutineManager = {}
+--CoroutineManager.__index = CoroutineManager
+--
+--function CoroutineManager.new()
+--	return setmetatable({
+--		coroutines = {},
+--		waitTimers = {}
+--	}, CoroutineManager)
+--end
+--
+--function CoroutineManager:add(func)
+--	local co = coroutine.create(func)
+--	table.insert(self.coroutines, co)
+--	self.waitTimers[co] = 0  -- Initialisation du timer d'attente
+--	return co
+--end
+--
+--function CoroutineManager:wait(seconds)
+--	local co = coroutine.running()
+--	self.waitTimers[co] = os.clock() + seconds
+--	coroutine.yield()
+--end
+--
+--function CoroutineManager:await(promise)
+--	local isResolved = false
+--	local resolvedValue, rejectedReason
+--	promise:then_(function(value)
+--		resolvedValue = value
+--		isResolved = true
+--	end, function(reason)
+--		rejectedReason = reason
+--		isResolved = true
+--	end)
+--
+--	if not isResolved then
+--		while not isResolved do
+--			self:wait(0)
+--		end
+--	end
+--	if rejectedReason then
+--		print("Erreur Coroutine:", rejectedReason)
+--		error(rejectedReason)
+--	end
+--
+--	return resolvedValue
+--end
+--
+--function CoroutineManager:run()
+--	local index = 1
+--	while #self.coroutines > 0 do
+--		local co = self.coroutines[index]
+--		if self.waitTimers[co] and self.waitTimers[co] <= os.clock() then
+--			local success, msg = coroutine.resume(co)
+--			if not success then
+--				print("Status Coroutine ==> :", coroutine.status(co))
+--				print("Erreur Coroutine ==> :", msg)
+--			end
+--			if coroutine.status(co) == "dead" then
+--				table.remove(self.coroutines, index)
+--				self.waitTimers[co] = nil
+--			else
+--				index = index % #self.coroutines + 1
+--			end
+--		else
+--			index = index % #self.coroutines + 1
+--		end
+--	end
+--end
+--
+--local coroutineManager = CoroutineManager.new()
 
 Ats.coroutineManager = coroutineManager

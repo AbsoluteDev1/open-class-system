@@ -18,13 +18,13 @@ function RemoteEvent.new(name)
 	self.onClient = Signal.new();
 	self.onServer = Signal.new()
 	--- FIVEM LINK CODE
-	--self.netEvent = RegisterNetEvent(name, function(...)
-	--	if IsDuplicityVersion() then
-	--		self.onServer:fire(...);
-	--	else
-	--		self.onClient:fire(...);
-	--	end
-	--end);
+	self.netEvent = RegisterNetEvent(name, function(...)
+		if IsDuplicityVersion() then
+			self.onServer:fire(...);
+		else
+			self.onClient:fire(...);
+		end
+	end);
 
 	return self;
 end

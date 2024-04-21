@@ -27,12 +27,16 @@ function NetEvent.new(tableRef, attr, params)
 end
 
 function NetEvent:onValueChange(object, attr, value)
-	error("Not implemented method")
+	--error("Not implemented method")
 end
 
 function NetEvent:onInstantiate(object, attr)
-	Interface.netEvent(self.innerTable.__class__..":"..attr, function(...)
-		object[attr](...)
+	Interface.netEvent(self.innerTable.__class__..":"..attr, function(source,...)
+		if(IsDuplicityVersion()) then
+			object[attr](object,source,...)
+		else
+			object[attr](object,...)
+		end
 	end)
 end
 

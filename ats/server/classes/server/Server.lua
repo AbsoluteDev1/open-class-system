@@ -4,10 +4,6 @@
 --Made with ❤
 -------
 -------
---Copyright (c) Qinoxe, All Rights Reserved.
---This file is part of Qinoxe project.
---Unauthorized using, copying, modifying and/or distributing of this file
---via any medium is strictly prohibited. This code is confidential.
 -------
 --]]
 
@@ -46,6 +42,10 @@ function Server:waitForModules()
     BasicLog.info("All modules loaded in " .. Interface.getGameTimer() - time .. " ms");
 end
 
+_a.NetEvent(Server,"isServerReady")
+function Server:isServerReady(source)
+    TriggerClientEvent("Client:isServerReady",source);
+end
 
 _c.Server = Server
 classloaded(_cn.Server)
