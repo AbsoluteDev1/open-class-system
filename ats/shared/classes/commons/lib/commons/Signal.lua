@@ -19,10 +19,11 @@ function Signal.new()
 	return self;
 end
 
----@param func fun():void
+---@param func fun():Connection
 function Signal:connect(func)
 	local connection = Connection.new(self, func);
 	table.insert(self.connections, connection);
+	return connection;
 end
 
 function Signal:fire(...)

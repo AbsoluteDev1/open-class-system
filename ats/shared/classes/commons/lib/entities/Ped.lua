@@ -31,7 +31,14 @@ function Ped.new(model,coords,heading)
 	self.model = model or "a_m_m_skater_01";
 	self.coords = coords or vector3(0,0,0);
 	self.heading = heading or 0;
+
+	-- Signals
 	self.characterDied = Signal.new();
+	self.weaponEquipped = Signal.new();
+	self.weaponUnEquipped = Signal.new();
+	self.healthChanged = Signal.new();
+	self.armorChanged = Signal.new();
+
 	return self;
 end
 

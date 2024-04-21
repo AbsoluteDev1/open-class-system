@@ -35,7 +35,7 @@ function BaseValue.new(value)
     self.onValueChanged = signal;
     self.changed:connect(function(attr)
         if attr == "value" then
-            self.onValueChanged:emit(self.value)
+            self.onValueChanged:fire(self.value)
         end
     end)
     return self;

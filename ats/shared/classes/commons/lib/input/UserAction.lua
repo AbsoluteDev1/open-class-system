@@ -23,9 +23,13 @@ local UserAction = class(_cn.UserAction)
 
 --- Methods ---
 
-function UserAction.new()
+function UserAction.new(actionName, keycode, actionType)
     ---@type UserAction
     local self = initMetatable(UserAction);
+
+    self.actionName = actionName;
+    self.keycode = keycode;
+    self.actionType = actionType;
 
     return self;
 end
