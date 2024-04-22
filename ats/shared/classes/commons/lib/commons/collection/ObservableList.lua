@@ -103,7 +103,11 @@ function ObservableList:serialize()
     local data = {}
     for k,v in pairs(self.list) do
         if type(v) ~= "function" then
-            data[k] = v
+            if v.__class__ then
+                data[k] = v:serialize()
+            else
+                data[k] = v
+            end
         end
     end
     return data

@@ -13,6 +13,7 @@ loadClass(_cn.Server)
 --- Imports ---
 import("ApplicationScope")
 import("ModuleManager")
+import("Vehicle")
 
 ---@class Server : BaseObject
 local Server = class("Server")
@@ -30,6 +31,13 @@ function Server.new()
     ---@type Server
     local self = initMetatable(Server);
     BasicLog.info("Server starting...");
+
+    local v = _c.Vehicle.new("adder",vector3(0,0,0),0);
+    print(json.encode(v));
+    for k,v in pairs(v) do
+        print(k,v);
+    end
+
     self:waitForModules()
     return self;
 end

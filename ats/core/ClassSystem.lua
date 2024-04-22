@@ -66,7 +66,7 @@ function class(name,parentClass,cannotBeExtended)
 	    end
 	});
 	classes[name] = clazz;
-	clazz.__parent__ = parentClass and parentClass or BaseObject;
+	clazz.__parent__ = parentClass and parentClass.new() or BaseObject.new();
 	clazz.__class__ = name;
 
 	clazz.__canBeExtended__ = not cannotBeExtended;
@@ -90,6 +90,7 @@ function initMetatable(Object,cb)
 	if Object.__parent__ then
 		--- need to call the new of parent but apply to the current d instance
 		local p = Object.__parent__.new();
+		Object.__parent__ = p;
 		if p then
 			for k,v in pairs(p) do
 				if type(v) ~= "function" and not (string.sub(tostring(k),1,2) == "__") then
@@ -103,6 +104,9 @@ function initMetatable(Object,cb)
 
 	local monitorMetatable = {
 		__index = function(table, key)
+			if(key == "__internal__") then
+				return _d;
+			end
 			return _d[key]
 		end,
 		__newindex = function(table, key, value)
@@ -114,7 +118,13 @@ function initMetatable(Object,cb)
 				cb(table,key,value)
 			end
 			_d[key] = value
-		end
+		end,
+		__pairs = function(table)
+			return pairs(_d)
+		end,
+		__ipairs = function(table)
+			return ipairs(_d)
+		end,
 	}
 	local instance = setmetatable(internalData, monitorMetatable);
 	if Object.__class__ ~= "Signal" and Object.__class__ ~= "Connection" then

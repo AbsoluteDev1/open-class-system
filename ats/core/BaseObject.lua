@@ -25,7 +25,7 @@ end
 
 function BaseObject:serialize()
 	local data = {}
-	for k,v in pairs(self) do
+	for k,v in pairs(self.__internal__) do
 		if type(v) ~= "function" then
 			data[k] = v
 		end
